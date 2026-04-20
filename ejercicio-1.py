@@ -62,7 +62,26 @@ if __name__ == "__main__":
     
     productos = [p1, p2, p3, p4, p5, p6]
 
-    
+      # 3. Vender 20 unidades del primero 
+    p1.vender(20)
+
+    # 4. Intento de venta fallida (más del stock) 
+    p5.vender(10)
+
+    # 5. Reabastecer 
+    p3.reabastecer(10)
+
+    # 6. Imprimir todos los productos
+    print("\n--- Inventario Actual ---")
+    for p in productos:
+        print(p)
+
+    # 7. Imprimir total_productos de clase 
+    print(f"\nTotal de productos registrados: {ProductoAmazonico.total_productos}")
+
+    # 8. Valor de inventario total 
+    total_valor = sum(p.valor_inventario() for p in productos)
+    print(f"Valor total del inventario: S/ {total_valor:.2f}")
 
         
 

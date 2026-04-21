@@ -48,7 +48,10 @@ class Curso:
         self.inscritos = []
 
     def hay_cupo(self):
-        pass
+        return len(self.inscritos) < self.cupo_maximo
+    
+    def esta_inscrito(self,estudiante):
+        return f"{estudiante in self.inscritos} Esta inscrito" 
 
     
     

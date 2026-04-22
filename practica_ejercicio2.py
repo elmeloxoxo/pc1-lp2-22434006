@@ -34,6 +34,15 @@ class Embarcacion:
                     )
         def __str__(self):
             return f"[{self.tipo}] {self.nombre} - {self.ruta} (Motor: {self.motor})"
+        
+        def __eq__(self,other):
+          if isinstance (other, Embarcacion):
+              return self.nombre == other.nombre
+          return NotImplemented
+        
+class Puerto:
+    def __init__(self):
+        pass
 
             
 

@@ -39,40 +39,56 @@ class ProductoAmazonico:
             return True
         
     def valor_inventario(self) -> float:
-        self.id_valor = self.precio * self.stock
-        print(f"el valor en el inventario es {self.id_valor}")
-        return
+        return self.precio * self.stock
 
 #METODO DE CLASE
     @classmethod
     def desdecadena(cls,cadena:str):
         partes = cadena.replace("|"," ").split()
         return cls(partes[0],partes[1],float(partes[2]),int(partes[3]))
-
-
-productoclase = ProductoAmazonico.desdecadena("Platano|fruta|28.40|11")
-
-print(productoclase.stock)
-
-
-prd1=ProductoAmazonico ("Coca","planta medicinal",3.80,6)
-prd1.reabastecer(20)
-prd1.vender(18)
-print(prd1.stock)
-#prd1.valor_inventario()
-
-
-
-
-
-
-
-
-# prd2=ProductoAmazonico("Tapioca","energizante",22.30 ,20)
-# print(prd2.nombre)
-
-# print(ProductoAmazonico.total_productos)
     
+    #FORMATOS DE SALIDA
+    
+    def __str__(self):
+        return f"{self.nombre}({self.categoria}) - S/.{self.precio} - Stock:{self.stock} Unidades"
+    def __repr__(self):
+        return f"ProductoAmazonico({self.nombre!r},{self.categoria!r},{self.precio},{self.stock})"
+
+#PROGRAMA DE PRUEBA
+if __name__ == "__main__":
+    product1 = ProductoAmazonico("Aguaje","fruta",23.90,25)
+    product2 = ProductoAmazonico("Camu Camu","fruta",34.60,18)
+    product3 = ProductoAmazonico("Uña de Gato","planta medicinal",43.50,50)
+    product4 = ProductoAmazonico("Chonta","alimento",19.99,60)
+    product5 = ProductoAmazonico("collar iwakari","artesania",10,8)
+    
+    productoclase = ProductoAmazonico.desdecadena("Platano|fruta|28.40|11")
+
+    productos = [product1,product2,product3,product4,product5,productoclase]
+    #20 Unidades vendidas
+    product1.vender(20)
+
+    #Mas del stock
+    # product5.vender(9)
+
+    #Reabasteciendo un producto
+    product1.reabastecer(30)
+
+    #Todos los productos con print
+    print("\n---------INVENTARIO--------")
+    for p in productos:
+        print (p)
+
+
+    #Total Productos
+    print(f"\nel total de productos es: {ProductoAmazonico.total_productos}")
+
+    #valor inventario final
+    total_valor = sum(p.valor_inventario() for p in productos)
+    print(f"Valor total del inventario S/. {total_valor:.2f}")
+
+
+
 
 
 
